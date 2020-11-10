@@ -24,7 +24,7 @@ public class DataBaseManager : MonoBehaviour
     public string[] switch_name;
     public bool[] switches;
 
-    public List<Item> itemList = new List<Item>();
+    public List<Item> itemList = new List<Item>(); // 아이템 리스트 데이터베이스
     // Start is called before the first frame update
     void Start()
     {

@@ -16,7 +16,7 @@ public class Item
         One,
         Stack
     }
-    public Item(int _ItemID, string _itemName, ItemType _ItemType, int _ItemCount = 1)
+    public Item(int _ItemID, string _itemName, ItemType _ItemType, int _ItemCount = 1) //생성자로 아이템의 데이터베이스 구성 설정
     {
         itemID = _ItemID;
         itemName = _itemName;

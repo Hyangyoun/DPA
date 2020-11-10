@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine("StartFadeIn");
+        StartCoroutine("StartFadeIn");
         camera_pos.position = scene1.position;
         camera_pos.Translate(0, 0, -10);
     }
@@ -136,7 +136,7 @@ public class GameController : MonoBehaviour
     }
 
     //페이드아웃효과 개발때문에 잠시 주석처리(주석 풀어야됨)
-    /*IEnumerator StartFadeIn()
+    IEnumerator StartFadeIn()
     {
         while (fadeIn.color.a >= 0.0001)
         {
@@ -144,5 +144,5 @@ public class GameController : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         GameObject.Find("Fade").SetActive(false);
-    }*/
+    }
 }

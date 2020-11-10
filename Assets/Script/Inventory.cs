@@ -38,10 +38,10 @@ public class Inventory : MonoBehaviour
                 }
                 inventoryItemList.Add(theDataBase.itemList[i]); //해당아이템 추가
                 return;
-            }
-            Debug.LogError("데이터베이스에 해당 ID값을 가진 아이템이 존재하지 않습니다.");
+            } 
         }
-    }
+        Debug.LogError("데이터베이스에 해당 ID값을 가진 아이템이 존재하지 않습니다.");
+    } //아이템 습득 함수
 
     public void RemoveSlot()
     {
@@ -50,7 +50,7 @@ public class Inventory : MonoBehaviour
             slots[i].RemoveItem();
             slots[i].gameObject.SetActive(false);
         }
-    }
+    } //슬롯 초기화 함수
     public void ShowItem()
     {
         RemoveSlot();
@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour
             slots[i].gameObject.SetActive(true);
             slots[i].Additem(inventoryItemList[i]);
         }
-    }
+    } //슬롯 아이템 지정 함수
     public void SelectedItem()
     {
         StopAllCoroutines();
@@ -78,7 +78,7 @@ public class Inventory : MonoBehaviour
         {
             return;
         }
-    }
+    } //아이템 선택 함수
     public void SelectedNum(int i)
     {
         if(selectedItem == i)
@@ -90,7 +90,7 @@ public class Inventory : MonoBehaviour
             selectedItem = i;
             activateItem = true;
         }
-    }
+    } //아이템 선택상태,활성화 설정 함수
     // Update is called once per frame
     void Update()
     {

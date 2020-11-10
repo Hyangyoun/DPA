@@ -10,7 +10,7 @@ public class Inventory_Slot : MonoBehaviour
     public Text itemCount;
     public GameObject selected_Item;
 
-    public void Additem(Item _item)
+    public void Additem(Item _item) //넘어온 데이터의 아이템 값
     {
         itemName.text = _item.itemName;
         icon.sprite = _item.itemIcon;
@@ -23,7 +23,7 @@ public class Inventory_Slot : MonoBehaviour
         }
     }
 
-    public void RemoveItem()
+    public void RemoveItem() //아이템 초기화
     {
         itemName.text = "";
         itemCount.text = "";
