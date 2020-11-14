@@ -10,12 +10,12 @@ public class Inventory : MonoBehaviour
 
     private Inventory_Slot[] slots;
 
-    private List<Item> inventoryItemList;
+    public List<Item> inventoryItemList;
 
     public Transform tf;
 
-    private int selectedItem;
-    private bool activateItem = false;
+    public int selectedItem = 0;
+    public bool activateItem = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +38,105 @@ public class Inventory : MonoBehaviour
                 }
                 inventoryItemList.Add(theDataBase.itemList[i]); //해당아이템 추가
                 return;
-            } 
+            }
         }
         Debug.LogError("데이터베이스에 해당 ID값을 가진 아이템이 존재하지 않습니다.");
     } //아이템 습득 함수
+
+    public void UseItem(int _useID)
+    {
+        if (activateItem)
+        {
+            switch (inventoryItemList[selectedItem].itemID)
+            {
+                case 10001:
+                    if(_useID == 1001)
+                    {
+                        if (inventoryItemList[selectedItem].itemCount > 1)
+                        {
+                            inventoryItemList[selectedItem].itemCount--;
+                        }
+                        else
+                        {
+                            inventoryItemList.RemoveAt(selectedItem);
+                            activateItem = false;
+                        }
+                    }
+                    break;
+                case 10002:
+                    if (_useID == 1002)
+                    {
+                        if (inventoryItemList[selectedItem].itemCount > 1)
+                        {
+                            inventoryItemList[selectedItem].itemCount--;
+                        }
+                        else
+                        {
+                            inventoryItemList.RemoveAt(selectedItem);
+                            activateItem = false;
+                        }
+                    }
+                    break;
+                case 10003:
+                    if (_useID == 1003)
+                    {
+                        if (inventoryItemList[selectedItem].itemCount > 1)
+                        {
+                            inventoryItemList[selectedItem].itemCount--;
+                        }
+                        else
+                        {
+                            inventoryItemList.RemoveAt(selectedItem);
+                            activateItem = false;
+                        }
+                    }
+                    break;
+                case 10004:
+                    if(_useID == 1004)
+                    {
+                        if (inventoryItemList[selectedItem].itemCount > 1)
+                        {
+                            inventoryItemList[selectedItem].itemCount--;
+                        }
+                        else
+                        {
+                            inventoryItemList.RemoveAt(selectedItem);
+                            activateItem = false;
+                        }
+                    }
+                    break;
+                case 10005:
+                    if (_useID == 1005)
+                    {
+                        if (inventoryItemList[selectedItem].itemCount > 1)
+                        {
+                            inventoryItemList[selectedItem].itemCount--;
+                        }
+                        else
+                        {
+                            inventoryItemList.RemoveAt(selectedItem);
+                            activateItem = false;
+                        }
+                    }
+                    break;
+                case 10006:
+                    if (_useID == 1001)
+                    {
+                        if (inventoryItemList[selectedItem].itemCount > 1)
+                        {
+                            inventoryItemList[selectedItem].itemCount--;
+                        }
+                        else
+                        {
+                            inventoryItemList.RemoveAt(selectedItem);
+                            activateItem = false;
+                        }
+                    }
+                    break;
+
+            }
+        }
+    } // 미완성코드
 
     public void RemoveSlot()
     {
