@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ClickEvent : MonoBehaviour
 {
+    public static ClickEvent instans;
     [SerializeField] private GameObject[] newObject;
-    [SerializeField] private GameObject[] gameObjects;
-    private DataBaseManager dataBase;
-    public int dataBaseNumber;
+    public GameObject[] gameObjects;
+    public bool click;
+    DataBaseManager dataBase;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,9 +18,12 @@ public class ClickEvent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!click)
         {
-            _ClickEvent();
+            if (Input.GetMouseButtonDown(0))
+            {
+                _ClickEvent();
+            }
         }
     }
     void _ClickEvent()
@@ -32,13 +36,31 @@ public class ClickEvent : MonoBehaviour
             {
                 if(ray.collider.gameObject == gameObjects[i])
                 {
-                    if (dataBase.switches[dataBaseNumber])
+                    switch (i)
                     {
-                        Destroy(gameObjects[i]);
-                        newObject[i].SetActive(true);
+                        case 2:
+                            if (dataBase.switches[0])
+                            {
+                                Destroy(gameObjects[i]);
+                                newObject[i].SetActive(true);
+                                click = true;
+                                StartCoroutine(ClickDelay());
+                            }
+                            break;
+                        default:
+                            Destroy(gameObjects[i]);
+                            newObject[i].SetActive(true);
+                            click = true;
+                            StartCoroutine(ClickDelay());
+                            break;
                     }
                 }
             }
         }
+    }
+    IEnumerator ClickDelay()
+    {
+        yield return new WaitForSeconds(0.3f);
+        click = false;
     }
 }

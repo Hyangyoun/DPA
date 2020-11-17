@@ -109,14 +109,14 @@ public class GameController : MonoBehaviour
     }
     IEnumerator Inventory_ctrl()
     {
-        Vector2 openPos = new Vector2(0, 40);
-        Vector2 closePos = new Vector2(0, -26);
+        Vector2 openPos = new Vector2(0, 71);
+        Vector2 closePos = new Vector2(0, -54);
         while (true)
         {
             if (inventrue)
             {
                 inven.anchoredPosition = Vector2.Lerp(inven.anchoredPosition, closePos, Time.deltaTime*3);
-                if (inven.anchoredPosition.y <= -24.998)
+                if (inven.anchoredPosition.y <= -53.998)
                 {
                     inventrue = false;
                     yield break;
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
             else if (!inventrue)
             {
                 inven.anchoredPosition = Vector2.Lerp(inven.anchoredPosition, openPos, Time.deltaTime*3);
-                if (inven.anchoredPosition.y >= 38.998)
+                if (inven.anchoredPosition.y >= 70.998)
                 {
                     inventrue = true;
                     yield break;

@@ -5,18 +5,24 @@ using UnityEngine;
 public class ItemPickup : MonoBehaviour
 {
     public int itemID;
+    ClickEvent clickEvent;
+    private AudioManager audio;
     // Start is called before the first frame update
     void Start()
     {
-        
+        clickEvent = FindObjectOfType<ClickEvent>();
+        audio = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!clickEvent.click)
         {
-            ClickItem();
+            if (Input.GetMouseButtonDown(0))
+            {
+                ClickItem();
+            }
         }
     }
     void ClickItem()
@@ -29,6 +35,7 @@ public class ItemPickup : MonoBehaviour
             {
                 Inventory.instance.GetanItem(itemID); // 인벤토리 클래스로 값 전달
                 Destroy(hit.collider.gameObject);
+                audio.Play("아이템획득");
             }
         }
     } //아이템 클릭 및 상호작용
