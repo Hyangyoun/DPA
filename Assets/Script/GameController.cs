@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine("StartFadeIn");
+        StartCoroutine("StartFadeIn");
         camera_pos.position = scene1.position;
         camera_pos.Translate(0, 0, -10);
     }
@@ -105,38 +105,11 @@ public class GameController : MonoBehaviour
     }
     public void Inventory()
     {
-        StartCoroutine("Inventory_ctrl");
+        Animator anim = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Animator>();
+        anim.SetTrigger("ClickButton");
     }
-    IEnumerator Inventory_ctrl()
-    {
-        Vector2 openPos = new Vector2(0, 71);
-        Vector2 closePos = new Vector2(0, -54);
-        while (true)
-        {
-            if (inventrue)
-            {
-                inven.anchoredPosition = Vector2.Lerp(inven.anchoredPosition, closePos, Time.deltaTime*3);
-                if (inven.anchoredPosition.y <= -53.998)
-                {
-                    inventrue = false;
-                    yield break;
-                }
-            }
-            else if (!inventrue)
-            {
-                inven.anchoredPosition = Vector2.Lerp(inven.anchoredPosition, openPos, Time.deltaTime*3);
-                if (inven.anchoredPosition.y >= 70.998)
-                {
-                    inventrue = true;
-                    yield break;
-                }
-            }
-            yield return new WaitForFixedUpdate();
-        }
-    }
-
     //페이드아웃효과 개발때문에 잠시 주석처리(주석 풀어야됨)
-    /*IEnumerator StartFadeIn()
+    IEnumerator StartFadeIn()
     {
         while (fadeIn.color.a >= 0.0001)
         {
@@ -144,5 +117,5 @@ public class GameController : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
         GameObject.Find("Fade").SetActive(false);
-    }*/
+    }
 }
