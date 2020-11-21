@@ -31,7 +31,7 @@ public class Inventory : MonoBehaviour
         {
             if(_ItemID == theDataBase.itemList[i].itemID) //데이터 베이스에 아이템 발견
             {
-                for (int j = 0; j > inventoryItemList.Count; j++) //중복아이템 섬사
+                for (int j = 0; j > inventoryItemList.Count; j++) //중복아이템 검사
                 {
                     inventoryItemList[j].itemCount += _Count;
                     return;

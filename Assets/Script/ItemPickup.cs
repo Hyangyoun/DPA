@@ -17,7 +17,7 @@ public class ItemPickup : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!clickEvent.click)
+        if (!false)
         {
             if (Input.GetMouseButtonDown(0))
             {

@@ -2,6 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SystemScript
+{
+    public int scriptID;
+    [TextArea(3, 5)]
+    public string script;
+
+    public SystemScript(int _scriptID,string _script)
+    {
+        scriptID = _scriptID;
+        script = _script;
+    }
+}
+[System.Serializable]
+public class PlayerScript
+{
+    public int scriptID;
+    [TextArea(3,5)]
+    public string script;
+
+    public PlayerScript(int _scriptID, string _script)
+    {
+        scriptID = _scriptID;
+        script = _script;
+    }
+}
 public class DataBaseManager : MonoBehaviour
 {
     static public DataBaseManager instance;
@@ -25,6 +51,8 @@ public class DataBaseManager : MonoBehaviour
     public bool[] switches;
 
     public List<Item> itemList = new List<Item>(); // 아이템 리스트 데이터베이스
+    public List<PlayerScript> psList = new List<PlayerScript>(); // 대사 리스트 데이터베이스
+    public List<SystemScript> ssList = new List<SystemScript>(); // 스크립트 리스트 데이터베이스
     // Start is called before the first frame update
     void Start()
     {
