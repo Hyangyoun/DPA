@@ -23,6 +23,7 @@ public class Inventory : MonoBehaviour
         theDataBase = FindObjectOfType<DataBaseManager>();
         inventoryItemList = new List<Item>();
         slots = tf.GetComponentsInChildren<Inventory_Slot>();
+        inventoryItemList.Add(new Item(10005, "열쇠", Item.ItemType.One));
     }
 
     public void GetanItem(int _ItemID,int _Count = 1) 
@@ -31,10 +32,13 @@ public class Inventory : MonoBehaviour
         {
             if(_ItemID == theDataBase.itemList[i].itemID) //데이터 베이스에 아이템 발견
             {
-                for (int j = 0; j > inventoryItemList.Count; j++) //중복아이템 검사
+                for (int j = 0; j < inventoryItemList.Count; j++) //중복아이템 검사
                 {
-                    inventoryItemList[j].itemCount += _Count;
-                    return;
+                    if (inventoryItemList[j].itemID == _ItemID)
+                    {
+                        inventoryItemList[j].itemCount += _Count;
+                        return;
+                    }
                 }
                 inventoryItemList.Add(theDataBase.itemList[i]); //해당아이템 추가
                 return;
@@ -43,98 +47,15 @@ public class Inventory : MonoBehaviour
         Debug.LogError("데이터베이스에 해당 ID값을 가진 아이템이 존재하지 않습니다.");
     } //아이템 습득 함수
 
-    public void UseItem(int _useID)
+    public void UseItem()
     {
-        if (activateItem)
+        if (inventoryItemList[selectedItem].itemCount.Equals(1))
         {
-            switch (inventoryItemList[selectedItem].itemID)
-            {
-                case 10001:
-                    if(_useID == 1001)
-                    {
-                        if (inventoryItemList[selectedItem].itemCount > 1)
-                        {
-                            inventoryItemList[selectedItem].itemCount--;
-                        }
-                        else
-                        {
-                            inventoryItemList.RemoveAt(selectedItem);
-                            activateItem = false;
-                        }
-                    }
-                    break;
-                case 10002:
-                    if (_useID == 1002)
-                    {
-                        if (inventoryItemList[selectedItem].itemCount > 1)
-                        {
-                            inventoryItemList[selectedItem].itemCount--;
-                        }
-                        else
-                        {
-                            inventoryItemList.RemoveAt(selectedItem);
-                            activateItem = false;
-                        }
-                    }
-                    break;
-                case 10003:
-                    if (_useID == 1003)
-                    {
-                        if (inventoryItemList[selectedItem].itemCount > 1)
-                        {
-                            inventoryItemList[selectedItem].itemCount--;
-                        }
-                        else
-                        {
-                            inventoryItemList.RemoveAt(selectedItem);
-                            activateItem = false;
-                        }
-                    }
-                    break;
-                case 10004:
-                    if(_useID == 1004)
-                    {
-                        if (inventoryItemList[selectedItem].itemCount > 1)
-                        {
-                            inventoryItemList[selectedItem].itemCount--;
-                        }
-                        else
-                        {
-                            inventoryItemList.RemoveAt(selectedItem);
-                            activateItem = false;
-                        }
-                    }
-                    break;
-                case 10005:
-                    if (_useID == 1005)
-                    {
-                        if (inventoryItemList[selectedItem].itemCount > 1)
-                        {
-                            inventoryItemList[selectedItem].itemCount--;
-                        }
-                        else
-                        {
-                            inventoryItemList.RemoveAt(selectedItem);
-                            activateItem = false;
-                        }
-                    }
-                    break;
-                case 10006:
-                    if (_useID == 1001)
-                    {
-                        if (inventoryItemList[selectedItem].itemCount > 1)
-                        {
-                            inventoryItemList[selectedItem].itemCount--;
-                        }
-                        else
-                        {
-                            inventoryItemList.RemoveAt(selectedItem);
-                            activateItem = false;
-                        }
-                    }
-                    break;
-
-            }
+            inventoryItemList.RemoveAt(selectedItem);
+        }
+        else if(inventoryItemList[selectedItem].itemCount > 1)
+        {
+            inventoryItemList[selectedItem].itemCount--;
         }
     } // 미완성코드
 

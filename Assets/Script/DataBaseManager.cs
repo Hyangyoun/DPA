@@ -62,5 +62,6 @@ public class DataBaseManager : MonoBehaviour
         itemList.Add(new Item(10004, "AA건전지", Item.ItemType.Stack));
         itemList.Add(new Item(10005, "열쇠", Item.ItemType.One));
         itemList.Add(new Item(10006, "토끼인형", Item.ItemType.One));
+        itemList.Add(new Item(10007, "수납장열쇠", Item.ItemType.One));
     }
 }

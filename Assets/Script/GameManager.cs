@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject option;
     [SerializeField] private Transform scene1;
@@ -15,14 +15,12 @@ public class GameManager : MonoBehaviour
     public Image fadeIn;
     public int thisscene = 1;
     bool inventrue = false;
-    private ClickEvent clickEvent;
     // Start is called before the first frame update
     void Start()
     {
         //StartCoroutine("StartFadeIn");
         camera_pos.position = scene1.position;
         camera_pos.Translate(0, 0, -10);
-        clickEvent = GetComponent<ClickEvent>();
     }
 
     // Update is called once per frame
@@ -34,12 +32,10 @@ public class GameManager : MonoBehaviour
     public void ClickOption()
     {
         option.SetActive(true);
-        ClickEventState();
     }
     public void ClickOptionClose()
     {
         option.SetActive(false);
-        ClickEventState();
     }
     public void Right()
     {
@@ -111,11 +107,6 @@ public class GameManager : MonoBehaviour
     {
         Animator anim = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Animator>();
         anim.SetTrigger("ClickButton");
-    }
-
-    public void ClickEventState()
-    {
-        clickEvent.enabled = !clickEvent.enabled;
     }
     //페이드아웃효과 개발때문에 잠시 주석처리(주석 풀어야됨)
     /*IEnumerator StartFadeIn()
