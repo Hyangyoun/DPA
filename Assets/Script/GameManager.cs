@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameController : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject option;
     [SerializeField] private Transform scene1;
@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
     public Image fadeIn;
     public int thisscene = 1;
     bool inventrue = false;
+    public RaycastHit2D hit;
+    public bool click = true;
+    public bool unActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,16 +29,28 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (click)
+            {
+                Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                hit = Physics2D.Raycast(pos, Vector2.zero);
+                unActive = true;
+                if(hit.collider != null)
+                Debug.Log(hit.collider.name);
+            }
+        }
     }
 
     public void ClickOption()
     {
         option.SetActive(true);
+        click = false;
     }
     public void ClickOptionClose()
     {
         option.SetActive(false);
+        click = true;
     }
     public void Right()
     {

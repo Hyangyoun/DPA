@@ -9,16 +9,18 @@ public class PrintScript : MonoBehaviour
     public Image emotion;
     public Text playerScript;
     private DataBaseManager dataBase;
-    private ClickEvent gamemanager;
+    private GameManager gameManager;
     private AudioManager audio;
+    private ZoomIn zoomIn;
 
     public static PrintScript instance;
     void Start()
     {
         instance = this;
         dataBase = FindObjectOfType<DataBaseManager>();
-        gamemanager = FindObjectOfType<ClickEvent>();
         audio = FindObjectOfType<AudioManager>();
+        zoomIn = FindObjectOfType<ZoomIn>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     public void InputPlayerScript(int _scriptID,int _emotionID)
@@ -34,12 +36,13 @@ public class PrintScript : MonoBehaviour
         }
     }
 
-    public void InputSystemScript(int _scriptID, int _emotionID)
+    public void InputSystemScript(int _scriptID, int _emotionID = 304)
     {
         for (int i = 0; i <= dataBase.ssList.Count; i++)
         {
             if (dataBase.ssList[i].scriptID == _scriptID)
             {
+                emotion.sprite = Resources.Load("UI/" + _emotionID.ToString(), typeof(Sprite)) as Sprite;
                 scriptImage.SetActive(true);
                 playerScript.text = dataBase.ssList[i].script;
                 return;
@@ -50,7 +53,7 @@ public class PrintScript : MonoBehaviour
     IEnumerator PrintPlayerScript(string script)
     {
         scriptImage.SetActive(true);
-        gamemanager.enabled = false;
+        gameManager.click = false;
         playerScript.text = "";
         for(int i = 0; i<script.Length; i++)
         {
@@ -62,6 +65,7 @@ public class PrintScript : MonoBehaviour
     public void HideScript()
     {
         scriptImage.SetActive(false);
-        gamemanager.enabled = true;
+        gameManager.click = true;
+        zoomIn.zoomBack.SetActive(false);
     }
 }
