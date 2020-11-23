@@ -11,6 +11,7 @@ public class ObjectData
     public int scriptID;
     public int emotionID;
     public int needData;
+    public int needItemStack;
     public bool Change;
     public bool dataChange;
 
@@ -97,15 +98,34 @@ public class ClickEvent : MonoBehaviour
                                 {
                                     if (inventory.inventoryItemList[inventory.selectedItem].itemID.Equals( obList[i].itemID))
                                     {
-                                        obList[i].changeObject.SetActive(true);
-                                        inventory.UseItem();
-                                        if (obList[i].Change)
+                                        if (dataBase.var[obList[i].needData] == obList[i].needItemStack && obList[i].needData != 0)
                                         {
+                                            obList[i].changeObject.SetActive(true);
                                             obList[i].defualtObject.SetActive(false);
                                         }
-                                        if (obList[i].dataChange)
+                                        else if (obList[i].needItemStack > 1 && inventory.inventoryItemList[inventory.selectedItem].itemCount >= obList[i].needItemStack)
                                         {
-                                            dataBase.switches[obList[i].needData] = !dataBase.switches[obList[i].needData];
+                                            obList[i].changeObject.SetActive(true);
+                                            obList[i].defualtObject.SetActive(false);
+                                            inventory.UseItem(obList[i].needItemStack);
+                                        }
+                                        else if (obList[i].needItemStack > 1 && inventory.inventoryItemList[inventory.selectedItem].itemCount < obList[i].needItemStack)
+                                        {
+                                            dataBase.var[obList[i].needData] += inventory.inventoryItemList[inventory.selectedItem].itemCount;
+                                            inventory.UseItem(inventory.inventoryItemList[inventory.selectedItem].itemCount);
+                                        }
+                                        else
+                                        {
+                                            obList[i].changeObject.SetActive(true);
+                                            inventory.UseItem();
+                                            if (obList[i].Change)
+                                            {
+                                                obList[i].defualtObject.SetActive(false);
+                                            }
+                                            if (obList[i].dataChange)
+                                            {
+                                                dataBase.switches[obList[i].needData] = !dataBase.switches[obList[i].needData];
+                                            }
                                         }
                                     }
                                     else

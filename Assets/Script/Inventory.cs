@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour
         theDataBase = FindObjectOfType<DataBaseManager>();
         inventoryItemList = new List<Item>();
         slots = tf.GetComponentsInChildren<Inventory_Slot>();
-        inventoryItemList.Add(new Item(10005, "열쇠", Item.ItemType.One));
     }
 
     public void GetanItem(int _ItemID,int _Count = 1) 
@@ -47,7 +46,7 @@ public class Inventory : MonoBehaviour
         Debug.LogError("데이터베이스에 해당 ID값을 가진 아이템이 존재하지 않습니다.");
     } //아이템 습득 함수
 
-    public void UseItem()
+    public void UseItem(int _useCount = 1)
     {
         if (inventoryItemList[selectedItem].itemCount.Equals(1))
         {
@@ -55,8 +54,13 @@ public class Inventory : MonoBehaviour
         }
         else if(inventoryItemList[selectedItem].itemCount > 1)
         {
-            inventoryItemList[selectedItem].itemCount--;
+            inventoryItemList[selectedItem].itemCount -= _useCount;
+            if(inventoryItemList[selectedItem].itemCount < 1)
+            {
+                inventoryItemList.RemoveAt(selectedItem);
+            }
         }
+        activateItem = false;
     } // 미완성코드
 
     public void RemoveSlot()
