@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PrintScript : MonoBehaviour
 {
@@ -64,8 +65,8 @@ public class PrintScript : MonoBehaviour
     }
     public void HideScript()
     {
-        scriptImage.SetActive(false);
         gameManager.click = true;
+        scriptImage.SetActive(false);
         zoomIn.zoomBack.SetActive(false);
     }
 }

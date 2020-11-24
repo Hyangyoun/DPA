@@ -29,11 +29,22 @@ public class UseItem : MonoBehaviour
     public int scriptID;
     public int emotionID;
     public ScriptType scriptType;
+    [Space]
+    public int noItemScriptID;
+    public int noItemEmotionID;
+    public ScriptType _scriptType;
+
+    [Header("오디오 설정")]
+    public bool audioSet;
+    public string audioName;
+    [Space]
+    public string noItemAudioName;
 
     private Inventory inventory;
     private DataBaseManager dataBase;
     private PrintScript script;
     private GameManager gameManager;
+    private AudioManager audioManager;
 
     public enum ScriptType
     {
@@ -49,6 +60,7 @@ public class UseItem : MonoBehaviour
         dataBase = FindObjectOfType<DataBaseManager>();
         script = FindObjectOfType<PrintScript>();
         gameManager = FindObjectOfType<GameManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -75,6 +87,10 @@ public class UseItem : MonoBehaviour
                                 {
                                     script.InputSystemScript(scriptID);
                                 }
+                                if (audioSet)
+                                {
+                                    audioManager.Play(audioName);
+                                }
                                 if (change)
                                 {
                                     changeObject.SetActive(true);
@@ -100,6 +116,10 @@ public class UseItem : MonoBehaviour
                                 }
                                 if (dataBase.var[needDataID] >= needItemStack)
                                 {
+                                    if (audioSet)
+                                    {
+                                        audioManager.Play(audioName);
+                                    }
                                     if (change)
                                     {
                                         changeObject.SetActive(true);
@@ -123,6 +143,10 @@ public class UseItem : MonoBehaviour
                             {
                                 script.InputSystemScript(scriptID);
                             }
+                            if (audioSet)
+                            {
+                                audioManager.Play(audioName);
+                            }
                             if (needSwitchData)
                             {
                                 dataBase.switches[needSwitchDataID] = true;
@@ -142,6 +166,10 @@ public class UseItem : MonoBehaviour
                             {
                                 script.InputSystemScript(scriptID);
                             }
+                            if (audioSet)
+                            {
+                                audioManager.Play(audioName);
+                            }
                             if (needSwitchData)
                             {
                                 dataBase.switches[needSwitchDataID] = true;
@@ -150,16 +178,41 @@ public class UseItem : MonoBehaviour
                             inventory.UseItem(inventory.inventoryItemList[inventory.selectedItem].itemCount);
                             this.gameObject.SetActive(false);
                         }
+                        else
+                        {
+                            if (printScript && scriptType.Equals(ScriptType.PlayerScript))
+                            {
+                                script.InputPlayerScript(scriptID, emotionID);
+                            }
+                            else if (printScript && scriptType.Equals(ScriptType.SystemScript))
+                            {
+                                script.InputSystemScript(scriptID);
+                            }
+                            if (audioSet)
+                            {
+                                audioManager.Play(audioName);
+                            }
+                            if (needSwitchData)
+                            {
+                                dataBase.switches[needSwitchDataID] = true;
+                            }
+                            gameManager.unActive = false;
+                            inventory.UseItem(inventory.inventoryItemList[inventory.selectedItem].itemCount);
+                        }
                     }
                     else
                     {
-                        if (printScript && scriptType.Equals(ScriptType.PlayerScript))
+                        if (printScript && _scriptType.Equals(ScriptType.PlayerScript))
                         {
-                            script.InputPlayerScript(scriptID, emotionID);
+                            script.InputPlayerScript(noItemScriptID,noItemEmotionID);
                         }
                         else if (printScript && scriptType.Equals(ScriptType.SystemScript))
                         {
-                            script.InputSystemScript(scriptID);
+                            script.InputSystemScript(noItemScriptID);
+                        }
+                        if (audioSet)
+                        {
+                            audioManager.Play(noItemAudioName);
                         }
                         gameManager.unActive = false;
                     }

@@ -10,10 +10,14 @@ public class Keypad : MonoBehaviour
     public GameObject[] number;
     public Text text;
     private GameManager gameManager;
+    private AudioManager audioManager;
+    private PrintScript printScript;
     // Start is called before the first frame update
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        audioManager = FindObjectOfType<AudioManager>();
+        printScript = FindObjectOfType<PrintScript>();
     }
 
     // Update is called once per frame
@@ -34,6 +38,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "0";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[1]))
@@ -45,6 +50,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "1";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[2]))
@@ -56,6 +62,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "2";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[3]))
@@ -67,6 +74,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "3";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[4]))
@@ -78,6 +86,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "4";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[5]))
@@ -89,6 +98,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "5";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[6]))
@@ -100,6 +110,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "6";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[7]))
@@ -111,6 +122,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "7";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[8]))
@@ -122,6 +134,7 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "8";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[9]))
@@ -133,11 +146,13 @@ public class Keypad : MonoBehaviour
                     else
                     {
                         text.text += "9";
+                        audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[10]))
                 {
                     text.text = text.text.Substring(0, text.text.Length - 1);
+                    audioManager.Play("금고버튼");
                 }
                 else if (hit.collider.gameObject.Equals(number[11]))
                 {
@@ -146,11 +161,14 @@ public class Keypad : MonoBehaviour
                         open_gumgo.SetActive(true);
                         gumgo.SetActive(false);
                         gameManager.click = true;
+                        audioManager.Play("금고해제");
+                        printScript.InputSystemScript(237);
                         this.gameObject.SetActive(false);
                     }
                     else
                     {
                         text.text = "";
+                        audioManager.Play("금고버튼");
                         return;
                     }
                 }

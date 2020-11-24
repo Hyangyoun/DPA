@@ -17,9 +17,14 @@ public class Change : MonoBehaviour
     public int emotionID;
     public ScriptType scriptType;
 
+    [Header("오디오 설정")]
+    public bool audioSet;
+    public string audioName;
+
     private DataBaseManager dataBase;
     private PrintScript script;
     private GameManager gameManager;
+    private AudioManager audioManager;
     public enum ScriptType
     {
         PlayerScript,
@@ -31,6 +36,7 @@ public class Change : MonoBehaviour
         dataBase = FindObjectOfType<DataBaseManager>();
         script = FindObjectOfType<PrintScript>();
         gameManager = FindObjectOfType<GameManager>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -54,6 +60,10 @@ public class Change : MonoBehaviour
                             {
                                 script.InputSystemScript(scriptID);
                             }
+                            if (audioSet)
+                            {
+                                audioManager.Play(audioName);
+                            }
                             changeObject.SetActive(true);
                             this.gameObject.SetActive(false);
                         }
@@ -71,6 +81,10 @@ public class Change : MonoBehaviour
                         else if (printScript && scriptType.Equals(ScriptType.SystemScript))
                         {
                             script.InputSystemScript(scriptID);
+                        }
+                        if (audioSet)
+                        {
+                            audioManager.Play(audioName);
                         }
                         changeObject.SetActive(true);
                         this.gameObject.SetActive(false);

@@ -23,11 +23,16 @@ public class LockBox : MonoBehaviour
     public int scriptID;
     public int emotionID;
     public ScriptType scriptType;
+    [Space]
+    public int noItemScriptID;
+    public int noItemEmotionID;
+    public ScriptType _scriptType;
 
     private Inventory inventory;
     private DataBaseManager dataBase;
     private PrintScript script;
     private GameManager gameManager;
+    private AudioManager audioManager;
 
     public enum ScriptType
     {
@@ -41,6 +46,7 @@ public class LockBox : MonoBehaviour
         dataBase = FindObjectOfType<DataBaseManager>();
         script = FindObjectOfType<PrintScript>();
         inventory = FindObjectOfType<Inventory>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -69,6 +75,7 @@ public class LockBox : MonoBehaviour
                                 }
                                 gameManager.unActive = false;
                                 changeObject.SetActive(true);
+                                audioManager.Play("금고활성화");
                                 gameManager.click = false;
                             }
                             else if (needData && inventory.inventoryItemList[inventory.selectedItem].itemCount < needItemStack)
@@ -86,9 +93,14 @@ public class LockBox : MonoBehaviour
                                 if (dataBase.var[needDataID] >= needItemStack)
                                 {
                                     changeObject.SetActive(true);
+                                    audioManager.Play("금고활성화");
                                     gameManager.click = false;
                                 }
                                 gameManager.unActive = false;
+                            }
+                            else
+                            {
+                                script.InputSystemScript(noItemScriptID);
                             }
                         }
                     }

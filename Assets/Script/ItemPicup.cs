@@ -22,10 +22,15 @@ public class ItemPicup : MonoBehaviour
     public bool zoomIn;
     public int zoomInID;
 
+    [Header("오디오 설정")]
+    public bool audioSet;
+    public string audioName;
+
     private Inventory inventory;
     private PrintScript script;
     private GameManager gameManager;
     private ZoomIn zoom;
+    private AudioManager audioManager;
 
     public enum ScriptType
     {
@@ -39,6 +44,7 @@ public class ItemPicup : MonoBehaviour
         script = FindObjectOfType<PrintScript>();
         gameManager = FindObjectOfType<GameManager>();
         zoom = FindObjectOfType<ZoomIn>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -50,7 +56,18 @@ public class ItemPicup : MonoBehaviour
             {
                 if (gameManager.hit.collider.gameObject.Equals(this.gameObject))
                 {
-                    inventory.GetanItem(itemID, itemCount);
+                    if(itemCount > 1)
+                    {
+                        for(int i = 0;i<itemCount; i++)
+                        {
+                            inventory.GetanItem(itemID);
+                        }
+                    }
+                    else
+                    {
+                        inventory.GetanItem(itemID, itemCount);
+                    }
+                    audioManager.Play(audioName);
                     if (printScript && scriptType.Equals(ScriptType.PlayerScript))
                     {
                         script.InputPlayerScript(scriptID, emotionID);
