@@ -172,6 +172,11 @@ public class Keypad : MonoBehaviour
                         return;
                     }
                 }
+                else if (hit.collider.gameObject.Equals(number[12]))
+                {
+                    this.gameObject.SetActive(false);
+                    audioManager.Play("설정");
+                }
 
             }
         }

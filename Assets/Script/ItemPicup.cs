@@ -87,6 +87,7 @@ public class ItemPicup : MonoBehaviour
                         this.gameObject.SetActive(false);
                     }
                     gameManager.unActive = false;
+                    GetComponent<ItemPicup>().enabled = false;
                 }
             }
         }

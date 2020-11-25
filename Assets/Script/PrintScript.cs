@@ -65,6 +65,7 @@ public class PrintScript : MonoBehaviour
     }
     public void HideScript()
     {
+        StopAllCoroutines();
         gameManager.click = true;
         scriptImage.SetActive(false);
         zoomIn.zoomBack.SetActive(false);

@@ -76,6 +76,7 @@ public class LockBox : MonoBehaviour
                                 gameManager.unActive = false;
                                 changeObject.SetActive(true);
                                 audioManager.Play("금고활성화");
+                                dataBase.switches[2] = true;
                                 gameManager.click = false;
                             }
                             else if (needData && inventory.inventoryItemList[inventory.selectedItem].itemCount < needItemStack)
@@ -94,6 +95,7 @@ public class LockBox : MonoBehaviour
                                 {
                                     changeObject.SetActive(true);
                                     audioManager.Play("금고활성화");
+                                    dataBase.switches[2] = true;
                                     gameManager.click = false;
                                 }
                                 gameManager.unActive = false;
@@ -103,6 +105,12 @@ public class LockBox : MonoBehaviour
                                 script.InputSystemScript(noItemScriptID);
                             }
                         }
+                    }
+                    else if (dataBase.switches[2])
+                    {
+                        changeObject.SetActive(true);
+                        audioManager.Play("금고활성화");
+                        gameManager.click = false;
                     }
                 }
             }
