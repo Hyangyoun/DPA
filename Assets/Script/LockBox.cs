@@ -100,10 +100,6 @@ public class LockBox : MonoBehaviour
                                 }
                                 gameManager.unActive = false;
                             }
-                            else
-                            {
-                                script.InputSystemScript(noItemScriptID);
-                            }
                         }
                     }
                     else if (dataBase.switches[2])
@@ -111,6 +107,12 @@ public class LockBox : MonoBehaviour
                         changeObject.SetActive(true);
                         audioManager.Play("금고활성화");
                         gameManager.click = false;
+                        gameManager.unActive = false;
+                    }
+                    else
+                    {
+                        script.InputSystemScript(noItemScriptID);
+                        gameManager.unActive = false;
                     }
                 }
             }
