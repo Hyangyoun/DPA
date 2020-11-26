@@ -906,7 +906,7 @@ MonoBehaviour:
   change: 1
   destroy: 0
   printScript: 1
-  scriptID: 206
+  scriptID: 224
   emotionID: 0
   scriptType: 1
   noItemScriptID: 0
@@ -4113,6 +4113,9 @@ MonoBehaviour:
       \uC704\uC5D0 \uC5F4\uC1E0\uAC00 \uB193\uC5EC\uC838\uC788\uB2E4."
   - scriptID: 236
     script: "\uAE08\uACE0\uAC00 \uC791\uB3D9\uB42C\uB2E4."
+  - scriptID: 224
+    script: "\uC190\uC804\uB4F1\uC744 \uBE44\uCD94\uC790 \uC228\uACA8\uC9C4 \uCD08\uCE68\uC774
+      \uB098\uD0C0\uB0AC\uB2E4."
 --- !u!4 &815965481
 Transform:
   m_ObjectHideFlags: 0
@@ -6159,6 +6162,7 @@ GameObject:
   - component: {fileID: 1256322910}
   - component: {fileID: 1256322909}
   - component: {fileID: 1256322911}
+  - component: {fileID: 1256322912}
   m_Layer: 5
   m_Name: Script
   m_TagString: Untagged
@@ -6278,6 +6282,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!61 &1256322912
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256322907}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.5157166, y: 1.4655151}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1194.3721, y: 264.26147}
+  m_EdgeRadius: 0
 --- !u!1 &1256960875
 GameObject:
   m_ObjectHideFlags: 0
