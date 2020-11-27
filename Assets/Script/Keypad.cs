@@ -31,7 +31,7 @@ public class Keypad : MonoBehaviour
             {
                 if (hit.collider.gameObject.Equals(number[0]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -43,7 +43,7 @@ public class Keypad : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(number[1]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -55,7 +55,7 @@ public class Keypad : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(number[2]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -67,7 +67,7 @@ public class Keypad : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(number[3]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -79,7 +79,7 @@ public class Keypad : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(number[4]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -91,7 +91,7 @@ public class Keypad : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(number[5]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -103,7 +103,7 @@ public class Keypad : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(number[6]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -115,7 +115,7 @@ public class Keypad : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(number[7]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -125,21 +125,21 @@ public class Keypad : MonoBehaviour
                         audioManager.Play("금고버튼");
                     }
                 }
-                else if (hit.collider.gameObject.Equals(number[8]))
+                else if (hit.collider.gameObject.Equals(number[7]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
                     else
                     {
-                        text.text += "8";
+                        text.text += "7";
                         audioManager.Play("금고버튼");
                     }
                 }
                 else if (hit.collider.gameObject.Equals(number[9]))
                 {
-                    if (text.text.Length >= 8)
+                    if (text.text.Length >= 7)
                     {
                         return;
                     }
@@ -151,8 +151,11 @@ public class Keypad : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(number[10]))
                 {
-                    text.text = text.text.Substring(0, text.text.Length - 1);
-                    audioManager.Play("금고버튼");
+                    if(text.text.Length > 0)
+                    {
+                        text.text = text.text.Substring(0, text.text.Length - 1);
+                        audioManager.Play("금고버튼");
+                    }
                 }
                 else if (hit.collider.gameObject.Equals(number[11]))
                 {
@@ -176,6 +179,7 @@ public class Keypad : MonoBehaviour
                 {
                     this.gameObject.SetActive(false);
                     audioManager.Play("설정");
+                    gameManager.click = true;
                 }
 
             }
