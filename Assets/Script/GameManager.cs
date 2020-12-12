@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -122,6 +123,10 @@ public class GameManager : MonoBehaviour
     {
         Animator anim = GameObject.FindGameObjectWithTag("Inventory").GetComponent<Animator>();
         anim.SetTrigger("ClickButton");
+    }
+    public void GotoMain()
+    {
+        SceneManager.LoadScene("Title");
     }
     //페이드아웃효과 개발때문에 잠시 주석처리(주석 풀어야됨)
     IEnumerator StartFadeIn()
